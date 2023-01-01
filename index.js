@@ -204,7 +204,7 @@ Aşağıdakileri yapmak için fenomenSil'i kullanın:
 ÖRNEK: fenomenSil işlevi fenomenler dizisi ve 0 indeks sayısı ile çağrılırsa, veri kümemizden 'Instagram' kaldırılmış olarak döndürür. */
 function fenomenSil(dizi1,index) {
   let yFenomen = [...dizi1];
-  yFenomen = yFenomen.splice(index+1,0,dizi1.length);
+  yFenomen = yFenomen.splice(index+1,dizi1.length);
   console.log(dizi1.length);
   return yFenomen;
 }
@@ -228,10 +228,18 @@ Aşağıdakileri yapmak için fenomenEkle'i kullanın:
 
 ÖRNEK: fenomenEkle(fenomenler, 6, "Workintech", 10000000, 2022, "Instagram") çağrıldığında dizinin sonuna yukarıdaki nesne en sona eklenerek yeni fenomenler dizisini döndürmelidir. */
 
-function fenomenEkle(/*kod*/) {
-  /*kod*/
+function fenomenEkle(dizi,number,profil,tSayi,gSayi,platform) {
+let diziCopy = [...dizi];
+ let newC = {};
+  newC.number = number;
+  newC.profile = profil;
+  newC.followers = tSayi;
+  newC.posts = gSayi;
+  newC.platform = platform;
+  diziCopy.push(newC);
+  return diziCopy;
 }
-
+console.log (fenomenEkle(fenomenler, 6, "Workintech", 10000000, 2022, "Instagram"))
 
 /* Görev 7:
 Aşağıdakileri yapmak için enFenomenler'yi kullanın:
@@ -241,9 +249,15 @@ Aşağıdakileri yapmak için enFenomenler'yi kullanın:
 ÖRNEK: enFenomenler(fenomenler) çağrıldığında sonuç olarak ["Instagram", "Cristiano Ronaldo", ... "Khabane lame"] dönemelidir
 */
 
-function enFenomenler(/*kod*/) {
-  /*kod*/
+function enFenomenler(dizi1) {
+  let fProfil = [];
+  for (let index = 0; index < dizi1.length; index++) {
+    if (dizi1[index].followers > 100000000)
+    fProfil.push(dizi1[index].profile);
+       }
+  return fProfil;
 }
+console.log(enFenomenler(fenomenler));
 
 
 /* Görev 8:
@@ -255,9 +269,18 @@ Aşağıdakileri yapmak için fenomenGonderimSayisi'nı kullanın:
 ÖRNEK: fenomenGonderimSayisi(fenomenler, 'Will Smith') çağrıldığında "136" dönmelidir
 */
 
-function fenomenGonderimSayisi(/*kod*/){
-  /*kod*/
+function fenomenGonderimSayisi(dizi1,fAdi){
+  let pSayi;
+  for (let index = 0; index < dizi1.length; index++) {
+    if(fAdi == dizi1[index].profile)
+    {
+      pSayi = dizi1[index].posts;
+    }
+    
+  }
+  return pSayi;
 }
+console.log(fenomenGonderimSayisi(fenomenler, 'Will Smith'));
 
 
 
@@ -272,10 +295,27 @@ Not: Gönderi sayısı belli olmayan (NA) hesaba katmayın.
 Örnek: platformaGoreCokGonderiYapanFenomen(fenomenler, 'TikTok') çağrıldığında "charli damelio" dönmelidir
 */
 
-function platformaGoreCokGonderiYapanFenomen(/*kod*/){
-  /*kod*/
+function platformaGoreCokGonderiYapanFenomen(dizi1,pAdı){
+   let fAdi;
+   let istenenP = [];
+   for (let index = 0; index < dizi1.length; index++) {
+    if (dizi1[index].platform === pAdı)
+    istenenP.push(dizi1[index]);
+    }
+    console.log(istenenP);
+    let enB = 1;
+    let sirasi = 0;
+    for (let index = 0; index < istenenP.length; index++) {
+      if (istenenP[index].posts>enB)
+      {
+        enB = istenenP[index].posts;
+        sirasi = index;
+      }
+    }
+   fAdi = istenenP[sirasi].profile;
+  return fAdi;
 }
-
+console.log(platformaGoreCokGonderiYapanFenomen(fenomenler, 'Twitter'));
 
 
 /* ***** GÖREVLERİN SONU ***** */
